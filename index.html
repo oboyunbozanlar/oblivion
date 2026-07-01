@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OBLİVİON | Dijital Üs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Menü Butonu -->
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+    <!-- Navigasyon Menüsü -->
+    <nav id="nav-menu" class="hidden">
+        <ul>
+            <li><a href="#scripts">PY SCRIPTLERİ</a></li>
+            <li><a href="#maps">ROBLOX MAPLER</a></li>
+            <li><a href="#contact">İLETİŞİM</a></li>
+        </ul>
+    </nav>
+
+    <!-- Ana Profil Alanı -->
+    <header class="hero">
+        <img src="profil.jpg" alt="OBLİVİON" class="profile-img">
+        <h1>OBLİVİON</h1>
+    </header>
+
+    <!-- Dinamik İçerik Alanı -->
+    <main id="content-area">
+        <section id="scripts" class="container">
+            <h2 class="section-title">PY SCRIPTLERİ</h2>
+            <div class="card-grid" id="script-list">
+                <!-- Scriptler buraya JavaScript ile gelecek -->
+                <article class="card">
+                    <h3>KALP GÖRSEN ŞÖLEN SCRİPTİ</h3>
+                    <p>Gelişmiş görsel efektli kalp şöleni.</p>
+                    <div class="card-buttons">
+                        <button onclick="fetchGitHubFile('https://raw.githubusercontent.com/oboyunbozanlar/oblivion/main/kalp.py', 'copy')">Kopyala</button>
+                        <button onclick="fetchGitHubFile('https://raw.githubusercontent.com/oboyunbozanlar/oblivion/main/kalp.py', 'view')">İncele</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
