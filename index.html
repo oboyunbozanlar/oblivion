@@ -3,94 +3,356 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OBLİVİON | Elite Ops</title>
+    <title>OBLIVION | Showcase</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap');
-
+        /* Modern & Dark Tema Ayarları */
         :root {
-            --bg: #0a0a0c;
-            --panel: #121217;
-            --accent: #00f2ff;
-            --glass: rgba(255, 255, 255, 0.03);
+            --bg-color: #0d0e12;
+            --card-bg: #161822;
+            --accent-color: #6366f1; /* Neon Mor/Mavi */
+            --text-color: #f3f4f6;
+            --text-muted: #9ca3af;
         }
 
-        body { 
-            background: var(--bg); color: #fff; 
-            font-family: 'Outfit', sans-serif; margin: 0; display: flex;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
-        /* Sidebar - Premium Dokunuş */
-        .sidebar { 
-            width: 320px; height: 100vh; background: var(--panel); 
-            border-right: 1px solid rgba(255,255,255,0.05); padding: 50px 30px;
-            position: fixed; display: flex; flex-direction: column; align-items: center;
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        .profile-img { 
-            width: 120px; height: 120px; border-radius: 20px; 
-            object-fit: cover; border: 1px solid var(--accent);
-            box-shadow: 0 0 40px rgba(0, 242, 255, 0.2); margin-bottom: 20px;
+        /* Sol Üst Menü (Hamburger Menu) */
+        .menu-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            cursor: pointer;
+            background: var(--card-bg);
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            transition: all 0.3s;
         }
 
-        .nav-links { width: 100%; margin-top: 50px; }
-        .nav-links a { 
-            display: block; color: #777; text-decoration: none; padding: 20px;
-            border-radius: 12px; transition: 0.4s; font-weight: 600;
-        }
-        .nav-links a:hover { 
-            background: var(--glass); color: var(--accent); 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        .menu-btn:hover {
+            border-color: var(--accent-color);
         }
 
-        /* Ana İçerik */
-        .main-content { margin-left: 380px; padding: 80px; width: 100%; }
-        
-        .header-section { margin-bottom: 60px; }
-        .header-section h1 { font-size: 3.5rem; letter-spacing: -1px; margin: 0; }
+        .menu-btn .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-color);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
 
-        /* Premium Kart */
-        .card { 
-            background: var(--panel); padding: 40px; border-radius: 24px;
-            border: 1px solid rgba(255,255,255,0.05); position: relative; overflow: hidden;
-            transition: 0.5s; width: 400px;
+        /* Yan Menü Paneli */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100%;
+            background: var(--card-bg);
+            z-index: 99;
+            transition: 0.4s cubic-bezier(0.1, 1, 0.1, 1);
+            padding: 80px 30px;
+            box-shadow: 5px 0 25px rgba(0,0,0,0.5);
+            border-right: 1px solid rgba(255,255,255,0.05);
         }
-        .card:hover { border-color: var(--accent); transform: translateY(-10px); }
-        
-        /* Modern Buton */
-        button { 
-            background: var(--accent); color: #000; border: none;
-            padding: 15px 30px; border-radius: 12px; font-weight: bold;
-            cursor: pointer; transition: 0.3s; margin-top: 20px;
-            box-shadow: 0 10px 20px rgba(0, 242, 255, 0.2);
+
+        .sidebar.active {
+            left: 0;
         }
-        button:hover { transform: scale(1.05); box-shadow: 0 15px 30px rgba(0, 242, 255, 0.4); }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul li a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            color: var(--text-color);
+            background: rgba(99, 102, 241, 0.1);
+            padding-left: 25px;
+        }
+
+        /* Profil ve Başlık Alanı (Hero) */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px 40px 20px;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-color);
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.4);
+            margin-bottom: 20px;
+            transition: transform 0.5s;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .brand-name {
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #fff, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            font-family: 'Arial Black', Gadget, sans-serif;
+        }
+
+        /* Ana İçerik Alanı */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 15px;
+        }
+
+        /* Script & Proje Kartları (Grid Layout) */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.15);
+            color: var(--accent-color);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* Butonlar */
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.05);
+            color: var(--text-color);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Toast Bildirimi (Kopyalandı Mesajı için) */
+        .toast {
+            position: fixed;
+            bottom: -50px;
+            right: 20px;
+            background: var(--accent-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: 0.3s ease;
+            z-index: 1000;
+        }
+        .toast.show { bottom: 20px; }
     </style>
 </head>
 <body>
 
-    <aside class="sidebar">
-        <img src="profil.jpg" class="profile-img" alt="User">
-        <h2 style="margin:0">mamut2714</h2>
-        <p style="color:var(--accent); font-size: 0.8rem;">SİSTEM ÇEVRİMİÇİ</p>
-        
-        <nav class="nav-links">
-            <a href="#">Dashboard</a>
-            <a href="#">Script Deposu</a>
-            <a href="#">İletişim</a>
-        </nav>
-    </aside>
+    <!-- Sol Üst Hamburger Menü -->
+    <div class="menu-btn" onclick="toggleSidebar()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
 
-    <main class="main-content">
-        <div class="header-section">
-            <h1>OBLİVİON <span style="color:var(--accent)">HUB</span></h1>
-            <p style="color:#777">Profesyonel dijital operasyon merkezi.</p>
-        </div>
+    <!-- Yan Menü -->
+    <nav class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="#py-scripts">PY SCRIPTS</a></li>
+            <li><a href="#sites">SİTELER</a></li>
+            <li><a href="#bots">BOTLAR</a></li>
+            <li><a href="#roblox">ROBLOX MAPS</a></li>
+            <li><a href="#contact">İLETİŞİM</a></li>
+        </ul>
+    </nav>
 
-        <div class="card">
-            <h3>KALP GÖRSEN ŞÖLEN</h3>
-            <p style="color:#aaa">Gelişmiş görsel efektli modül.</p>
-            <button onclick="alert('Kopyalandı!')">KODU KOPYALA</button>
-        </div>
+    <!-- Profil Alanı -->
+    <header class="hero">
+        <!-- Buraya kendi profil resminin linkini koyacaksın -->
+        <img src="https://via.placeholder.com/150" alt="OBLIVION" class="profile-img">
+        <h1 class="brand-name">OBLIVION</h1>
+        <p style="color: var(--text-muted);">Sanal Dünyam & Geliştirdiğim Projeler</p>
+    </header>
+
+    <!-- Ana İçerik -->
+    <main class="container">
+
+        <!-- Python Scriptleri Bölümü -->
+        <section id="py-scripts">
+            <h2 class="section-title">Python Scriptleri</h2>
+            <div class="grid">
+                
+                <!-- Kart 1 -->
+                <div class="card">
+                    <span class="tag">Python</span>
+                    <h3>KALP GÖRSEN ŞÖLEN SCRİPTİ</h3>
+                    <p>Terminal veya arayüz üzerinde görsel şölen oluşturan özel kalpli animasyon scripti.</p>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="copyScript('print(\'Kopyalanacak Örnek Python Kodu Buraya Gelecek\')')">Kopyala</button>
+                        <button class="btn btn-secondary">İncele</button>
+                    </div>
+                </div>
+
+                <!-- Diğer script kartlarını buraya ekleyebiliriz -->
+
+            </div>
+        </section>
+
+        <!-- Roblox Haritaları Bölümü -->
+        <section id="roblox">
+            <h2 class="section-title">Roblox Projeleri</h2>
+            <div class="grid">
+                
+                <!-- Kart 2 -->
+                <div class="card">
+                    <span class="tag">Roblox / Lua</span>
+                    <h3>Sanal Şehir Map Projesi</h3>
+                    <p>Özel scriptler ve detaylı tasarımlarla optimize edilmiş rol yapma haritası.</p>
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-primary" target="_blank">Mape Git</a>
+                        <button class="btn btn-secondary">Detaylar</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
     </main>
+
+    <!-- Kopyalandı Bildirimi -->
+    <div class="toast" id="toast">Kod Kopyalandı!</div>
+
+    <!-- JavaScript Dinamikleri -->
+    <script>
+        // Yan menüyü açıp kapatma fonksiyonu
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+
+        // Script kopyalama ve bildirim gösterme fonksiyonu
+        function copyScript(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2000);
+            });
+        }
+
+        // Menü linklerine tıklanınca menüyü otomatik kapat
+        document.querySelectorAll('.sidebar ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('sidebar').classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
