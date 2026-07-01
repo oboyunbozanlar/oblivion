@@ -3,91 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OBLİVİON | Dashboard</title>
+    <title>OBLİVİON | Elite Ops</title>
     <style>
-        /* CSS Başlangıcı */
-        body { background-color: #16161f; color: #a9a9bc; font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; }
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap');
 
-        /* Sidebar */
-        .sidebar { width: 280px; height: 100vh; background: #20202d; padding: 20px; border-right: 1px solid #2d2d40; position: fixed; z-index: 100; }
-        .user-profile { display: flex; align-items: center; gap: 15px; margin-bottom: 40px; }
-        .user-profile img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid #5a5a7d; }
-        .user-info h3 { margin: 0; color: #fff; font-size: 1.1rem; }
-        .status { color: #00ff88; font-size: 0.75rem; }
-
-        /* Nav */
-        .nav-links a { display: block; color: #a9a9bc; text-decoration: none; padding: 15px 0; border-bottom: 1px solid #2d2d40; transition: 0.3s; }
-        .nav-links a:hover { color: #fff; padding-left: 5px; }
-        .nav-links h4 { color: #5a5a7d; margin-top: 30px; font-size: 0.7rem; text-transform: uppercase; }
-
-        /* Content */
-        .main-content { margin-left: 320px; padding: 40px; width: 100%; }
-        .card { background: #20202d; padding: 20px; border-radius: 10px; border: 1px solid #2d2d40; margin-bottom: 20px; }
-        .card h3 { color: #fff; margin-top: 0; }
-        button { background: transparent; border: 1px solid #00f2ff; color: #00f2ff; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: 0.3s; }
-        button:hover { background: #00f2ff; color: #16161f; }
-        
-        .menu-btn { display: none; background: none; border: none; color: #fff; font-size: 25px; cursor: pointer; position: fixed; top: 15px; left: 15px; z-index: 101; }
-
-        @media (max-width: 768px) {
-            .sidebar { left: -280px; transition: 0.3s; }
-            .sidebar.active { left: 0; }
-            .main-content { margin-left: 0; padding: 60px 20px; }
-            .menu-btn { display: block; }
+        :root {
+            --bg: #0a0a0c;
+            --panel: #121217;
+            --accent: #00f2ff;
+            --glass: rgba(255, 255, 255, 0.03);
         }
+
+        body { 
+            background: var(--bg); color: #fff; 
+            font-family: 'Outfit', sans-serif; margin: 0; display: flex;
+        }
+
+        /* Sidebar - Premium Dokunuş */
+        .sidebar { 
+            width: 320px; height: 100vh; background: var(--panel); 
+            border-right: 1px solid rgba(255,255,255,0.05); padding: 50px 30px;
+            position: fixed; display: flex; flex-direction: column; align-items: center;
+        }
+
+        .profile-img { 
+            width: 120px; height: 120px; border-radius: 20px; 
+            object-fit: cover; border: 1px solid var(--accent);
+            box-shadow: 0 0 40px rgba(0, 242, 255, 0.2); margin-bottom: 20px;
+        }
+
+        .nav-links { width: 100%; margin-top: 50px; }
+        .nav-links a { 
+            display: block; color: #777; text-decoration: none; padding: 20px;
+            border-radius: 12px; transition: 0.4s; font-weight: 600;
+        }
+        .nav-links a:hover { 
+            background: var(--glass); color: var(--accent); 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Ana İçerik */
+        .main-content { margin-left: 380px; padding: 80px; width: 100%; }
+        
+        .header-section { margin-bottom: 60px; }
+        .header-section h1 { font-size: 3.5rem; letter-spacing: -1px; margin: 0; }
+
+        /* Premium Kart */
+        .card { 
+            background: var(--panel); padding: 40px; border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.05); position: relative; overflow: hidden;
+            transition: 0.5s; width: 400px;
+        }
+        .card:hover { border-color: var(--accent); transform: translateY(-10px); }
+        
+        /* Modern Buton */
+        button { 
+            background: var(--accent); color: #000; border: none;
+            padding: 15px 30px; border-radius: 12px; font-weight: bold;
+            cursor: pointer; transition: 0.3s; margin-top: 20px;
+            box-shadow: 0 10px 20px rgba(0, 242, 255, 0.2);
+        }
+        button:hover { transform: scale(1.05); box-shadow: 0 15px 30px rgba(0, 242, 255, 0.4); }
     </style>
 </head>
 <body>
 
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
-
-    <aside id="sidebar" class="sidebar">
-        <div class="user-profile">
-            <img src="profil.jpg" alt="Profile">
-            <div class="user-info">
-                <h3>mamut2714</h3>
-                <p>Normal Üye</p>
-                <span class="status">● Çevrimiçi</span>
-            </div>
-        </div>
-
+    <aside class="sidebar">
+        <img src="profil.jpg" class="profile-img" alt="User">
+        <h2 style="margin:0">mamut2714</h2>
+        <p style="color:var(--accent); font-size: 0.8rem;">SİSTEM ÇEVRİMİÇİ</p>
+        
         <nav class="nav-links">
-            <a href="#">Ana Sayfa</a>
-            <a href="#">Destek Talebi Oluştur</a>
-            <hr>
-            <h4>Kategoriler</h4>
-            <a href="#scripts">PY Scriptleri</a>
-            <a href="#maps">Roblox Mapler</a>
+            <a href="#">Dashboard</a>
+            <a href="#">Script Deposu</a>
             <a href="#">İletişim</a>
         </nav>
     </aside>
 
     <main class="main-content">
-        <h1>OBLİVİON PANEL</h1>
-        <div class="card" id="scripts">
+        <div class="header-section">
+            <h1>OBLİVİON <span style="color:var(--accent)">HUB</span></h1>
+            <p style="color:#777">Profesyonel dijital operasyon merkezi.</p>
+        </div>
+
+        <div class="card">
             <h3>KALP GÖRSEN ŞÖLEN</h3>
-            <p>Gelişmiş görsel efektli script.</p>
-            <button onclick="fetchGitHubScript('https://raw.githubusercontent.com/oboyunbozanlar/oblivion/main/kalp.py')">Kopyala</button>
+            <p style="color:#aaa">Gelişmiş görsel efektli modül.</p>
+            <button onclick="alert('Kopyalandı!')">KODU KOPYALA</button>
         </div>
     </main>
-
-    <script>
-        // Menü Toggle Fonksiyonu
-        function toggleMenu() {
-            document.getElementById("sidebar").classList.toggle("active");
-        }
-        
-        // GitHub'dan Kod Çekme Fonksiyonu
-        async function fetchGitHubScript(url) {
-            try {
-                const response = await fetch(url);
-                const code = await response.text();
-                navigator.clipboard.writeText(code);
-                alert("Script panoya kopyalandı!");
-            } catch (error) {
-                alert("Hata: Script yüklenemedi.");
-            }
-        }
-    </script>
 </body>
 </html>
